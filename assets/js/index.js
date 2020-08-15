@@ -145,14 +145,42 @@ function arrOutput(arr) {
   };
 }
 
+// myFlatArray (need to repeat for myArray)
+function customFlat(array, depth = 1) {
+  if (depth < 0) {
+    console.error("need positive value");
+    return;
+  }
+
+  let flatArr = [];
+
+  if (depth === 0) {
+    flatArr = flatArr.concat(array);
+    return array;
+  }
+
+  for (let i = 0; array.length; i++) {
+    if (Array.isArray(array[i])) {
+      //always arrays
+      let buff = customFlat(array[i], depth - 1);
+      flatArr = flatArr.concat(buff);
+    } else {
+      //always rest
+      flatArr.push(array[i]);
+    }
+    return flatArr;
+  }
+} */
+
+/*
 //ex
 this.forEach = function (callback) {
   for (let i = 0; i < this.length; i++) {
     callback(this[i], i, this);
   }
-};
+};*/
 
-const myArrOne = new MyArray(1, 1, 2, 3, 4, 5);
+/* const myArrOne = new MyArray(1, 1, 2, 3, 4, 5);
 
 console.log(myArrOne);
 
@@ -162,8 +190,8 @@ myArrOne.myPush([444, 555, 666, 777]);
 console.log(myArrOne);
 
 myArrOne.myPop(3, 2);
-console.log(myArrOne);
- */
+console.log(myArrOne); */
+
 /* // Switch
 
 let input = prompt("Choice your desert: 1 - cake, 2 - cookie");
@@ -189,3 +217,119 @@ const sqearNum3 = (a) => Math.pow(a, 2);
 squearNum(a); */
 
 // Замыкания
+
+// RECURSION
+/* const pow = function (num, exp) {
+  if (exp === 1) return num;
+  return num * pow(num, exp - 1);
+};
+
+console.log(pow(2, 1)); */
+
+/* // logPar
+const logPar = function (num) {
+  if (num === 0) return "no parenthesis";
+  if (num === 1) return "()";
+  let arr = [];
+  for (let i = 0; i < num; i++) {
+    arr.length++;
+    arr[i] = "(";
+  }
+  for (let j = num; j < num; j++) {
+    arr.length++;
+    arr[j] = ")";
+  }
+  return arr;
+  // logPar(num - 1);
+};
+
+// v2
+function logPar2(num) {
+  if (num === 0) {
+    return "no parenthesis";
+  } else if (num === 1) {
+    return "()";
+  } else {
+    return `(${logPar2(num - 1)}))`;
+  }
+}
+console.log(logPar(2));
+console.log(logPar2(2)); */
+
+/* // recursive range
+function logRange(num1, num2) {
+  if (num1 === undefined || num2 === undefined) {
+    console.error("Enter a valid range");
+  }
+  if (num1 === num2) {
+    console.log(num1);
+  }
+  if (num1 < num2) {
+    console.log(logRange(num1 + 1, num2));
+  }
+  if (num1 > num2) {
+    console.log(logRange(num1, num2 + 1));
+  }
+}
+
+console.log(logRange(1, 5)); */
+
+// counted data structures (symbol)
+
+/* const symbolExample = Symbol("test");
+
+const object = {
+  test: "test",
+  symbolExample: symbolExample,
+  [symbolExample]: 325,
+};
+
+object[symbolExample] = "test";
+
+console.log(object); */
+
+/* // Spread operator   (with errors)
+function log(...rest) {
+  const array = ["test", "string", true, {}];
+  console.log(rest);
+  console.log(array);
+  console.log(...array, ...rest); // spread operator
+}
+
+log(1, "test", 4, "st", 5);
+
+function func(arr1, arr2) {
+  return [...arr1, ...arr2];
+}
+
+const arr1 = ["1", "2", "3", "4", "5"];
+const arr2 = ["11", "22", "33", "44", "55"];
+
+console.log(func(arr1, arr2));
+
+let obj1 = {
+  test: "test",
+};
+
+function func2(arr, object) {
+  return [...arr, obj];
+}
+
+console.log(func2(arr1, obj1));
+ */
+
+// Map & Set
+// Set
+
+//let set = new Set(["apple", "tree", "tree", "grass", "orangeTree"]);
+
+const arr23 = ["apple", "tree", "tree", "grass", "orangeTree"];
+
+function getU(arr) {
+  const set = new Set(arr);
+
+  return [...set];
+}
+
+const arr23 = ["apple", "tree", "tree", "grass", "orangeTree"];
+console.log(getU(arr23));
