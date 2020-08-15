@@ -103,8 +103,8 @@ function arrOutput(arr) {
   return arr;
 } */
 
-/* // MyArray
-function MyArray() {
+// MyArray
+/* function MyArray() {
   this.length = 0;
 
   for (let i = 0; i < arguments.length; i++) {
@@ -123,26 +123,47 @@ function MyArray() {
   };
 
   // MyPop
-  /*   this.myPop = function name(start, amountOfElements) {
-    for(let i=0; i<amountOfElements;i++){
-        delete(this[start]);
-        start++;    }
-        return this;
-  }; 
-}*/
-/* 
+  this.myPop = function name(start, amountOfElements) {
+    let tempStorage = [amountOfElements];
+    for (let i = 0; i < amountOfElements; i++) {
+      tempStorage[i] = this[start];
+      delete this[start];
+      start++;
+      this.length--;
+    }
+    return tempStorage;
+  };
+
+  // myForEach
+  this.myForEach = function (func) {
+    if (typeof func === "function") {
+      let len = this.length;
+      for (let i = 0; i < len; i++) {
+        func.call(this[i], i, this, thisArr);
+      }
+    }
+  };
+}
+
+//ex
+this.forEach = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    callback(this[i], i, this);
+  }
+};
+
 const myArrOne = new MyArray(1, 1, 2, 3, 4, 5);
 
 console.log(myArrOne);
 
-myArrOne.myPush([543, 345, 456, 765]);
+myArrOne.myForEach((elem, index) => console.log(elem));
 
-console.log(myArrOne); */
-/* 
-myArrOne.myPop(3);
+myArrOne.myPush([444, 555, 666, 777]);
+console.log(myArrOne);
 
-console.log(myArrOne); */
-
+myArrOne.myPop(3, 2);
+console.log(myArrOne);
+ */
 /* // Switch
 
 let input = prompt("Choice your desert: 1 - cake, 2 - cookie");
